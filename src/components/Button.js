@@ -2,11 +2,14 @@ import React from 'react';
 
 import { StyleSheet, Text, TouchableOpacity, Dimensions } from 'react-native';
 
-const Button = ({ text }) => {
+const Button = ({ text, handleClick }) => {
    const width = Dimensions.get('window').width / 3 - 6;
 
    return (
-      <TouchableOpacity style={[styles.container, { width: width }]}>
+      <TouchableOpacity
+         onPress={() => handleClick(text)}
+         style={[styles.container, { width: width }]}
+      >
          <Text style={{ color: '#fff', fontSize: 20 }}>{text}</Text>
       </TouchableOpacity>
    );

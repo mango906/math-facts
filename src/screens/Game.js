@@ -1,29 +1,52 @@
-import React from 'react';
-import { StyleSheet, View, Text, FlatList } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, Text, SafeAreaView, Alert } from 'react-native';
 import lib from '../lib';
-
+import config from '../config';
 import Button from '../components/Button';
 
 const Game = () => {
-   const randomColor = lib.randomColor();
+   const [number, setNumber] = useState({});
+   const [value, setValue] = useState('');
+   const [background, setBackground] = useState('#fff');
+   const [score, setScore] = useState(0);
+
+   useEffect(() => {
+      setNumber(lib.randomNum());
+      setBackground(lib.randomColor());
+   }, [score]);
+
+   useEffect(() => {
+      const { num1, num2 } = number;
+      if (num1 * num2 === parseInt(value)) {
+         setScore(score + 20);
+         setValue('');
+      }
+   }, [value]);
+
+   const handleClick = val => {
+      switch (val) {
+         case 'CLEAR':
+            setValue('');
+            return;
+         case 'HELP':
+            return;
+         default:
+            setValue(value + val);
+      }
+   };
+
+   const keyboards = config.keyboardType.map((el, i) => (
+      <Button key={i} text={el} handleClick={handleClick} />
+   ));
 
    return (
-      <View style={[styles.container, { backgroundColor: randomColor }]}>
-         <View style={styles.keyboard}>
-            <Button text={'1'} />
-            <Button text={'2'} />
-            <Button text={'3'} />
-            <Button text={'4'} />
-            <Button text={'5'} />
-            <Button text={'6'} />
-            <Button text={'7'} />
-            <Button text={'8'} />
-            <Button text={'9'} />
-            <Button text={'HELP'} />
-            <Button text={'0'} />
-            <Button text={'CLEAR'} />
-         </View>
-      </View>
+      <SafeAreaView style={[styles.container, { backgroundColor: background }]}>
+         <Text style={{ color: '#fff', fontSize: 60, marginTop: 100 }}>
+            {number.num1} × {number.num2}
+         </Text>
+         <Text style={{ color: '#fff', fontSize: 100 }}>{value}</Text>
+         <View style={styles.keyboard}>{keyboards}</View>
+      </SafeAreaView>
    );
 };
 

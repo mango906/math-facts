@@ -36,9 +36,7 @@ const AppStack = createStackNavigator({
    },
    GameScreen: {
       screen: GameScreen,
-      navigationOptions: () => ({
-         header: null
-      })
+      navigationOptions: () => ({})
    }
 });
 
