@@ -1,9 +1,20 @@
-import React from 'react';
+import React from "react";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <TouchableOpacity>
+        <Ionicons
+          size={200}
+          color={"#20639B"}
+          name="md-arrow-dropright-circle"
+        />
+      </TouchableOpacity>
+      <Text style={{ color: "#20639B", fontSize: 30, fontWeight: "bold" }}>
+        PLAY!
+      </Text>
     </View>
   );
 }
@@ -11,8 +22,12 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center"
   },
+
+  bold: {
+    fontWeight: "bold"
+  }
 });
