@@ -9,6 +9,7 @@ const Game = () => {
    const [value, setValue] = useState('');
    const [background, setBackground] = useState('#fff');
    const [score, setScore] = useState(0);
+   const [hint, setHint] = useState(false);
 
    useEffect(() => {
       setNumber(lib.randomNum());
@@ -20,6 +21,7 @@ const Game = () => {
       if (num1 * num2 === parseInt(value)) {
          setScore(score + 20);
          setValue('');
+         setHint(false);
       }
    }, [value]);
 
@@ -29,6 +31,7 @@ const Game = () => {
             setValue('');
             return;
          case 'HELP':
+            setHint(true);
             return;
          default:
             setValue(value + val);
@@ -45,7 +48,21 @@ const Game = () => {
             {number.num1} × {number.num2}
          </Text>
          <Text style={{ color: '#fff', fontSize: 100 }}>{value}</Text>
-         <View style={styles.keyboard}>{keyboards}</View>
+
+         <View style={{ marginTop: 'auto', alignItems: 'center' }}>
+            <Text
+               style={{
+                  opacity: 0.5,
+                  color: '#fff',
+                  fontSize: 30,
+                  marginBottom: 20,
+                  display: hint ? 'block' : 'none'
+               }}
+            >
+               The answer is {number.num1 * number.num2}
+            </Text>
+            <View style={styles.keyboard}>{keyboards}</View>
+         </View>
       </SafeAreaView>
    );
 };
@@ -60,8 +77,6 @@ const styles = StyleSheet.create({
    keyboard: {
       display: 'flex',
       flexDirection: 'row',
-      marginTop: 'auto',
-      marginBottom: 30,
       flexWrap: 'wrap'
    }
 });
