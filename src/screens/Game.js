@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, SafeAreaView, Alert } from 'react-native';
 import lib from '../lib';
 import config from '../config';
 import Button from '../components/Button';
+import ProgressBar from '../components/ProgressBar';
 
 const Game = () => {
    const [number, setNumber] = useState({});
@@ -10,6 +11,12 @@ const Game = () => {
    const [background, setBackground] = useState('#fff');
    const [score, setScore] = useState(0);
    const [hint, setHint] = useState(false);
+   const [second, setSecond] = useState(0);
+
+   useEffect(() => {
+      if (second === 20) return;
+      setTimeout(timeInterval, 1000);
+   }, [second]);
 
    useEffect(() => {
       setNumber(lib.randomNum());
@@ -19,11 +26,17 @@ const Game = () => {
    useEffect(() => {
       const { num1, num2 } = number;
       if (num1 * num2 === parseInt(value)) {
-         setScore(score + 20);
-         setValue('');
-         setHint(false);
+         setTimeout(() => {
+            setScore(score + 20);
+            setValue('');
+            setHint(false);
+         }, 300);
       }
    }, [value]);
+
+   const timeInterval = () => {
+      setSecond(second + 1);
+   };
 
    const handleClick = val => {
       switch (val) {
@@ -44,6 +57,7 @@ const Game = () => {
 
    return (
       <SafeAreaView style={[styles.container, { backgroundColor: background }]}>
+         <ProgressBar time={second} />
          <Text style={{ color: '#fff', fontSize: 60, marginTop: 100 }}>
             {number.num1} × {number.num2}
          </Text>
