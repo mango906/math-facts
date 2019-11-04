@@ -31,7 +31,7 @@ const Game = () => {
       const { num1, num2 } = number;
       if (num1 * num2 === parseInt(value)) {
          setTimeout(() => {
-            setScore(score + 20);
+            hint ? setScore(score + 1) : setScore(score + 20);
             setValue('');
             setHint(false);
          }, 300);
@@ -75,7 +75,7 @@ const Game = () => {
                   color: '#fff',
                   fontSize: 30,
                   marginBottom: 20,
-                  display: hint ? 'block' : 'none'
+                  display: hint ? 'flex' : 'none'
                }}
             >
                The answer is {number.num1 * number.num2}
