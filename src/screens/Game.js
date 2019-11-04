@@ -4,6 +4,7 @@ import lib from '../lib';
 import config from '../config';
 import Button from '../components/Button';
 import ProgressBar from '../components/ProgressBar';
+import Header from '../components/Header';
 
 const Game = () => {
    const [number, setNumber] = useState({});
@@ -14,7 +15,10 @@ const Game = () => {
    const [second, setSecond] = useState(0);
 
    useEffect(() => {
-      if (second === 20) return;
+      if (second === 20) {
+         Alert.alert(`Your score :  ${score}`);
+         return;
+      }
       setTimeout(timeInterval, 1000);
    }, [second]);
 
@@ -57,6 +61,7 @@ const Game = () => {
 
    return (
       <SafeAreaView style={[styles.container, { backgroundColor: background }]}>
+         <Header score={score} />
          <ProgressBar time={second} />
          <Text style={{ color: '#fff', fontSize: 60, marginTop: 100 }}>
             {number.num1} × {number.num2}
@@ -85,7 +90,8 @@ const styles = StyleSheet.create({
    container: {
       flex: 1,
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      zIndex: 10
    },
 
    keyboard: {

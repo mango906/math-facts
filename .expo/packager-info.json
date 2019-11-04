@@ -2,8 +2,9 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 85265,
+  "packagerPid": 30669,
   "expoServerNgrokUrl": "https://xc-arb.anonymous.math-facts.exp.direct",
   "packagerNgrokUrl": "https://packager.xc-arb.anonymous.math-facts.exp.direct",
-  "ngrokPid": 85291
+  "ngrokPid": 30709,
+  "webpackServerPort": null
 }
