@@ -9,20 +9,23 @@ const AppStack = createStackNavigator({
    MainScreen: {
       screen: MainScreen,
       navigationOptions: () => ({
-         header: null
+         header: null,
+         gesturesEnabled: false
       })
    },
    GameScreen: {
       screen: GameScreen,
       navigationOptions: () => ({
-         header: null
+         header: null,
+         gesturesEnabled: false
       })
    },
 
    EndGameScreen: {
       screen: EndGameScreen,
       navigationOptions: () => ({
-         header: null
+         header: null,
+         gesturesEnabled: false
       })
    }
 });
