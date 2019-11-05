@@ -6,7 +6,7 @@ import Button from '../components/Button';
 import ProgressBar from '../components/ProgressBar';
 import Header from '../components/Header';
 
-const Game = () => {
+const Game = ({ navigation }) => {
    const [number, setNumber] = useState({});
    const [value, setValue] = useState('');
    const [background, setBackground] = useState('#fff');
@@ -16,7 +16,10 @@ const Game = () => {
 
    useEffect(() => {
       if (second === 20) {
-         Alert.alert(`Your score :  ${score}`);
+         navigation.navigate('EndGameScreen', {
+            background,
+            score
+         });
          return;
       }
       setTimeout(timeInterval, 1000);

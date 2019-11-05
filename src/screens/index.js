@@ -5,6 +5,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
 
 import GameScreen from './Game';
+import EndGameScreen from './EndGameScreen';
 
 const MainScreen = ({ navigation }) => {
    const handleMove = () => {
@@ -36,6 +37,13 @@ const AppStack = createStackNavigator({
    },
    GameScreen: {
       screen: GameScreen,
+      navigationOptions: () => ({
+         header: null
+      })
+   },
+
+   EndGameScreen: {
+      screen: EndGameScreen,
       navigationOptions: () => ({
          header: null
       })
