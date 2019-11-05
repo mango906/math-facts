@@ -4,6 +4,15 @@ import OptionBtn from '../components/OptionBtn';
 
 const EndGameScreen = ({ navigation }) => {
    const { background, score } = navigation.state.params;
+
+   const playAgain = () => {
+      navigation.navigate('GameScreen');
+   };
+
+   const back = () => {
+      navigation.navigate('MainScreen');
+   };
+
    return (
       <SafeAreaView style={[styles.container, { backgroundColor: background }]}>
          <Text style={[styles.colorWhite, { fontSize: 60, marginTop: 100 }]}>
@@ -20,8 +29,8 @@ const EndGameScreen = ({ navigation }) => {
          <Text style={[styles.colorWhite, { fontSize: 30 }]}>points!</Text>
 
          <View style={{ width: '100%', marginTop: 'auto' }}>
-            <OptionBtn text="Play Again!" />
-            <OptionBtn text="Back" />
+            <OptionBtn text="Play Again!" event={playAgain} />
+            <OptionBtn text="Back" event={back} />
          </View>
       </SafeAreaView>
    );

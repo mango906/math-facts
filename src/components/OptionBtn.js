@@ -1,8 +1,9 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
-const OptionBtn = ({ text }) => (
+const OptionBtn = ({ text, event }) => (
    <TouchableOpacity
+      onPress={event}
       style={[
          styles.container,
          { backgroundColor: 'rgba(0,0,0, 0.2)', marginTop: 20 }
