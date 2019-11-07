@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, SafeAreaView, Alert } from 'react-native';
+import { StyleSheet, View, Text, SafeAreaView } from 'react-native';
 import lib from '../lib';
 import config from '../config';
 import Button from '../components/Button';
@@ -15,7 +15,7 @@ const Game = ({ navigation }) => {
    const [second, setSecond] = useState(0);
 
    useEffect(() => {
-      if (second === 20) {
+      if (second > 20) {
          navigation.navigate('EndGameScreen', {
             background,
             score
